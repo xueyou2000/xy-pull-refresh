@@ -1,0 +1,21 @@
+$PullRefresh: "xy-pull-refresh";
+
+.#{$PullRefresh} {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.#{$PullRefresh}-wrapper {
+    overflow: hidden;
+}
+.#{$PullRefresh}-content {
+    transform-origin: left top 0;
+    transition: transform 0.3s;
+}
+.#{$PullRefresh}-indicator {
+    color: grey;
+    text-align: center;
+
+    &.down {
+        margin-top: 10px;
+    }
+}
