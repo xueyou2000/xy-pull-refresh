@@ -16,7 +16,7 @@ function Avatar({ name }: { name: string }) {
 
 function createData(count = 20) {
     const data = [];
-    for (let i = 0; i < 20; ++i) {
+    for (let i = 0; i < count; ++i) {
         data.push(faker.name.findName());
     }
 
@@ -25,18 +25,18 @@ function createData(count = 20) {
 
 export default function() {
     const [loading, setLoading] = useState(false);
-    const [names, setNames] = useState(createData(20));
+    const [names, setNames] = useState(createData(10));
 
     function loadData() {
         setLoading(true);
         setTimeout(() => {
             setNames([...names, ...createData(10)]);
             setLoading(false);
-        }, 15000);
+        }, 3000);
     }
 
     return (
-        <PullRefresh className="employee-page" loading={loading} onLoadMore={loadData}>
+        <PullRefresh className="employee-page" onLoadMore={loadData} loading={loading} style={{ height: document.documentElement.clientHeight }}>
             <ul className="employee-list">
                 {names.map((x) => (
                     <li key={x} tabIndex={0}>

@@ -19,8 +19,8 @@
     "scripts": {
         "test": "quick-react-scripts test",
         "build": "quick-react-scripts build",
-        "start": "xy-manual-tools start -p 6006",
-        "build:demo": "xy-manual-tools build",
+        "start": "xy-manual-tools start -p 6006 -s",
+        "build:demo": "xy-manual-tools build -s",
         "_publish": "yarn run test && yarn run build && npm publish"
     },
     "keywords": [
@@ -44,10 +44,10 @@
         "@types/react": "16.8.2",
         "@types/react-dom": "16.8.2",
         "faker": "^4.1.0",
-        "quick-react-scripts": "1.1.8",
+        "quick-react-scripts": "1.2.0",
         "randomcolor": "^0.5.4",
         "react-testing-library": "^6.0.0",
-        "xy-manual-tools": "0.1.2"
+        "xy-manual-tools": "0.1.62"
     },
     "dependencies": {
         "classnames": "^2.2.6",
