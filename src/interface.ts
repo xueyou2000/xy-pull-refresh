@@ -24,11 +24,6 @@ export interface PullRefreshProps {
      */
     isNoMoreData?: boolean;
     /**
-     * 是否使用body作为滚动容器
-     * @description 使用body作为滚动容器,滚动条出现在body上
-     */
-    useBodyScroll?: boolean;
-    /**
      * 是否开启加载更多
      * @description 滚动到底部会触发加载更多事件
      */
@@ -55,16 +50,4 @@ export interface PullRefreshProps {
      * 下拉刷新事件
      */
     onPullRefresh?: Function;
-    /**
-     * 开始拖动事件
-     */
-    onTouchStart?: Function;
-    /**
-     * 正在拖动事件
-     */
-    onTouchMove?: Function;
-    /**
-     * 拖动完毕事件
-     */
-    onTouchEnd?: Function;
 }

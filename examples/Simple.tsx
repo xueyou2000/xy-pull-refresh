@@ -25,18 +25,26 @@ function createData(count = 20) {
 
 export default function() {
     const [loading, setLoading] = useState(false);
-    const [names, setNames] = useState(createData(10));
+    const [names, setNames] = useState(createData(5));
 
     function loadData() {
         setLoading(true);
         setTimeout(() => {
-            setNames([...names, ...createData(10)]);
+            setNames([...names, ...createData(5)]);
             setLoading(false);
-        }, 3000);
+        }, 1000);
+    }
+
+    function refresh() {
+        setLoading(true);
+        setTimeout(() => {
+            setNames(createData(5));
+            setLoading(false);
+        }, 1000);
     }
 
     return (
-        <PullRefresh className="employee-page" onLoadMore={loadData} loading={loading} style={{ height: document.documentElement.clientHeight }}>
+        <PullRefresh className="employee-page" onLoadMore={loadData} onPullRefresh={refresh} loading={loading} enablePullRefresh={true} style={{ height: document.documentElement.clientHeight }}>
             <ul className="employee-list">
                 {names.map((x) => (
                     <li key={x} tabIndex={0}>

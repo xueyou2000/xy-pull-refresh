@@ -6,6 +6,7 @@ $PullRefresh: "xy-pull-refresh";
 }
 .#{$PullRefresh}-wrapper {
     overflow: hidden;
+    min-height: 100%;
 }
 .#{$PullRefresh}-content {
     transform-origin: left top 0;
@@ -15,7 +16,15 @@ $PullRefresh: "xy-pull-refresh";
     color: grey;
     text-align: center;
 
-    &.down {
+    p {
+        margin: 0;
+    }
+
+    &.top {
+        margin-top: -21px;
+    }
+
+    &.bottom {
         margin-top: 10px;
     }
 }
