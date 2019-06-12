@@ -6864,10 +6864,10 @@ querystringify@^2.1.1:
   resolved "https://registry.npm.taobao.org/querystringify/download/querystringify-2.1.1.tgz#60e5a5fd64a7f8bfa4d2ab2ed6fdf4c85bad154e"
   integrity sha1-YOWl/WSn+L+k0qsu1v30yFutFU4=
 
-quick-react-scripts@1.2.0:
-  version "1.2.0"
-  resolved "https://registry.npm.taobao.org/quick-react-scripts/download/quick-react-scripts-1.2.0.tgz#e3eb73b8171369710e0903c2ab316c5532ab1672"
-  integrity sha1-4+tzuBcTaXEOCQPCqzFsVTKrFnI=
+quick-react-scripts@1.2.1:
+  version "1.2.1"
+  resolved "https://registry.npm.taobao.org/quick-react-scripts/download/quick-react-scripts-1.2.1.tgz#26ae9b30456b47656dc2974c65797f96cc71baac"
+  integrity sha1-Jq6bMEVrR2VtwpdMZXl/lsxxuqw=
   dependencies:
     "@babel/core" "^7.3.4"
     "@babel/preset-env" "^7.3.4"
@@ -9007,10 +9007,10 @@ xy-grid@^0.0.3:
     react-dom "^16.8.2"
     utils-hooks "0.0.65"
 
-xy-manual-tools@0.1.62:
-  version "0.1.62"
-  resolved "https://registry.npm.taobao.org/xy-manual-tools/download/xy-manual-tools-0.1.62.tgz#c7bd6b948039f8331339a3ae1b5b7c86a2cbf77b"
-  integrity sha1-x71rlIA5+DMTOaOuG1t8hqLL93s=
+xy-manual-tools@0.1.63:
+  version "0.1.63"
+  resolved "https://registry.npm.taobao.org/xy-manual-tools/download/xy-manual-tools-0.1.63.tgz#5182dbf4a85251f085e1cbe0a6965bb368abd6bc"
+  integrity sha1-UYLb9KhSUfCF4cvgppZbs2ir1rw=
   dependencies:
     "@fortawesome/fontawesome-svg-core" "1.2.17"
     "@fortawesome/free-solid-svg-icons" "5.8.1"

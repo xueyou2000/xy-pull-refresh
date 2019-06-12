@@ -12,8 +12,6 @@
 
 下拉刷新，下滑加载组件
 
-> 初次加载数据，务必要高于容器的高度，不然不出滚动条也就不会触发事件了!
-
 ## 安装
 
 ```bash
@@ -23,26 +21,36 @@ yarn add xy-pull-refresh
 
 ## 使用例子
 
-```ts
+```tsx
 import React from "react";
 import ReactDOM from "react-dom";
-import XyPullRefresh from "xy-pull-refresh";
-ReactDOM.render(<XyPullRefresh />, container);
+import PullRefresh from "xy-pull-refresh";
+ReactDOM.render(
+    <PullRefresh onLoadMore={loadData} onPullRefresh={refresh} enablePullRefresh={true}>
+        <ul>
+            <li>a</li>
+        </ul>
+    </PullRefresh>,
+    container
+);
 ```
 
 ## API
 
-| 属性     | 说明                                                               | 类型           | 默认值    |
-| -------- | ------------------------------------------------------------------ | -------------- | --------- |
-| ghost    | 幽灵属性，使按钮背景透明                                           | boolean        | false     |
-| long     | 是否长按钮                                                         | boolean        | false     |
-| icon     | 设置按钮的图标类型                                                 | IconDefinition | -         |
-| loading  | 设置按钮载入状态                                                   | boolean        | `false`   |
-| disabled | 按钮失效状态                                                       | boolean        | `false`   |
-| shape    | 设置按钮形状，可选值为 `circle` 或者不设                           | string         | -         |
-| size     | 设置按钮大小，可选值为 `small` `large` 或者不设                    | string         | `default` |
-| type     | 设置按钮类型，可选值为 `primary` `dashed` `text` `danger` 或者不设 | string         | -         |
-| onClick  | `click` 事件的 handler                                             | function       | -         |
+| 属性                 | 说明                                                                            | 类型                                | 默认值         |
+| -------------------- | ------------------------------------------------------------------------------- | ----------------------------------- | -------------- |
+| loading              | 是否正在加载数据/刷新数据                                                       | boolean                             | `false`        |
+| isNoMoreData         | 是否没有更多数据                                                                | boolean                             | `false`        |
+| enableLoadMore       | 是否开启加载更多, 滚动到底部会触发加载更多事件                                  | boolean                             | `true`         |
+| enablePullRefresh    | 是否开启下拉刷新                                                                | boolean                             | `false`        |
+| initLock             | 是否初始化锁定,在多个 tab 情况下，默认不是当前激活 tab 的，不需要主动去加载数据 | boolean                             | `true`         |
+| threshold            | 阈值, 下拉到距离以上刷新                                                        | number                              | 150            |
+| onLoadMore           | 加载更多事件                                                                    | Function                            | -              |
+| onPullRefresh        | 下拉刷新事件                                                                    | Function                            | -              |
+| noMoreDataNode       | 没有数据元素                                                                    | React.ReactNode                     | `没有更多数据` |
+| bottomIndicatorTips  | 上滑加载提示元素                                                                | React.ReactNode                     | `上滑加载数据` |
+| notEnoughRefreshNode | 不够下拉刷新时提示                                                              | React.ReactNode, GetPullRefreshNode | -              |
+| overRefreshNode      | 足够下拉刷新时提示                                                              | React.ReactNode                     | -              |
 
 ## 开发
 

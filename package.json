@@ -44,10 +44,10 @@
         "@types/react": "16.8.2",
         "@types/react-dom": "16.8.2",
         "faker": "^4.1.0",
-        "quick-react-scripts": "1.2.0",
+        "quick-react-scripts": "1.2.1",
         "randomcolor": "^0.5.4",
         "react-testing-library": "^6.0.0",
-        "xy-manual-tools": "0.1.62"
+        "xy-manual-tools": "0.1.63"
     },
     "dependencies": {
         "classnames": "^2.2.6",

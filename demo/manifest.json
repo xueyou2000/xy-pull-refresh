@@ -1,0 +1,9 @@
+{
+  "components.js": "js/components.chunk.js",
+  "runtime.js": "js/runtime.js",
+  "assets.js": "js/assets.chunk.js",
+  "router.js": "js/router.chunk.js",
+  "images/loading.svg": "images/loading.3315471.svg",
+  "index.html": "index.html",
+  "static/js/polyfill.js": "static/js/polyfill.js"
+}

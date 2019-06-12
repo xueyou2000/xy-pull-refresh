@@ -5,6 +5,7 @@ import LoadingSvg from "../assets/loading.svg";
 import { useMount } from "utils-hooks";
 import "./tools";
 import { getScrollPosition } from "./tools";
+import Circle from "./Circle";
 
 export enum PullRefreshPosition {
     top,
@@ -24,11 +25,37 @@ export enum PullRefreshLoading {
     loadData
 }
 
+function RefreshCircle({ percent }) {
+    return (
+        <div className="xy-pull-refresh-indicator-refreshing">
+            <Circle notransition={true} strokeWidth={7} trailWidth={0} percent={percent} trailColor="transparent" />
+        </div>
+    );
+}
+
 function PullRefresh(props: PullRefreshProps) {
-    const { prefixCls = "xy-pull-refresh", className, style, children, loading = false, isNoMoreData = false, enableLoadMore = true, enablePullRefresh = false, initLock = false, threshold = 100, onLoadMore, onPullRefresh } = props;
+    const {
+        prefixCls = "xy-pull-refresh",
+        className,
+        style,
+        children,
+        loading = false,
+        isNoMoreData = false,
+        enableLoadMore = true,
+        enablePullRefresh = false,
+        initLock = false,
+        threshold = 150,
+        onLoadMore,
+        onPullRefresh,
+        noMoreDataNode = "没有更多数据",
+        bottomIndicatorTips = "上滑加载数据",
+        notEnoughRefreshNode = (p: number) => <RefreshCircle percent={p} />,
+        overRefreshNode = <RefreshCircle percent={100} />
+    } = props;
     const [pullRefreshStatus, setPullRefreshStatus] = useState<PullRefreshPositionStatus>(PullRefreshPositionStatus.notEnoughRefreshPort);
     const position = useRef<PullRefreshPosition>(PullRefreshPosition.top);
     const loadingStatus = useRef<PullRefreshLoading>(PullRefreshLoading.none);
+    const [percent, setPercent] = useState(0);
 
     const start = useRef(null);
     const offset = useRef<number>(null);
@@ -69,6 +96,7 @@ function PullRefresh(props: PullRefreshProps) {
         if (position.current === PullRefreshPosition.top) {
             // 设置上拉指示符的状态
             if (pullRefreshStatus !== PullRefreshPositionStatus.refreshing) {
+                setPercent(_offset / threshold);
                 if (_offset > threshold && pullRefreshStatus !== PullRefreshPositionStatus.overRefreshPort) {
                     setPullRefreshStatus(PullRefreshPositionStatus.overRefreshPort);
                 }
@@ -86,9 +114,15 @@ function PullRefresh(props: PullRefreshProps) {
     }
 
     function onTouchEnd(e: TouchEvent) {
+        const target = e.currentTarget as HTMLElement;
+        const content = contentRef.current as HTMLElement;
         const topElement = topIndicator.current as HTMLElement;
+        if (content.scrollHeight < target.offsetHeight && offset.current < 0 && Math.abs(offset.current) >= threshold) {
+            loadData();
+        }
+
         if (position.current !== PullRefreshPosition.middle) {
-            if (position.current === PullRefreshPosition.bottom || offset.current < threshold) {
+            if (position.current === PullRefreshPosition.bottom || offset.current <= threshold) {
                 setContentStyle({ transform: `translate3d(0px, 0px, 0px)`, transition: null });
                 start.current = null;
             } else if (enablePullRefresh) {
@@ -132,10 +166,10 @@ function PullRefresh(props: PullRefreshProps) {
         return (
             <div className={classNames(`${prefixCls}-indicator`, "top")} ref={topIndicator}>
                 <div className={`${prefixCls}-indicator-notEnoughRefreshPort`} style={{ display: pullRefreshStatus === PullRefreshPositionStatus.notEnoughRefreshPort ? "block" : "none" }}>
-                    <p>下拉刷新</p>
+                    {notEnoughRefreshNode instanceof Function ? notEnoughRefreshNode(percent * 100) : notEnoughRefreshNode}
                 </div>
                 <div className={`${prefixCls}-indicator-overRefreshPort`} style={{ display: pullRefreshStatus === PullRefreshPositionStatus.overRefreshPort ? "block" : "none" }}>
-                    <p>松开刷新</p>
+                    {overRefreshNode}
                 </div>
                 <div className={`${prefixCls}-indicator-refreshing`} style={{ display: pullRefreshStatus === PullRefreshPositionStatus.refreshing ? "block" : "none" }}>
                     <img src={LoadingSvg} alt="refresh data" />
@@ -145,23 +179,21 @@ function PullRefresh(props: PullRefreshProps) {
     }
 
     function renderBottomIndicator() {
-        if (loading && loadingStatus.current === PullRefreshLoading.loadData) {
-            return (
-                <div className={classNames(`${prefixCls}-indicator`, "bottom")}>
-                    <img src={LoadingSvg} alt="load data" />
-                </div>
-            );
-        }
-
-        if (enableLoadMore) {
-            return (
-                <div className={classNames(`${prefixCls}-indicator`, "bottom")} onClick={loadData}>
-                    {isNoMoreData ? "没有更多数据" : "上滑加载数据"}
-                </div>
-            );
-        } else {
-            return null;
-        }
+        return (
+            <div className={classNames(`${prefixCls}-indicator`, "bottom")} onClick={loadData}>
+                {loading && loadingStatus.current === PullRefreshLoading.loadData ? (
+                    <div className={classNames(`${prefixCls}-indicator`, "bottom")}>
+                        <img src={LoadingSvg} alt="load data" />
+                    </div>
+                ) : (
+                    enableLoadMore && (
+                        <div className={classNames(`${prefixCls}-indicator`, "bottom")} onClick={loadData}>
+                            {isNoMoreData ? noMoreDataNode : bottomIndicatorTips}
+                        </div>
+                    )
+                )}
+            </div>
+        );
     }
 
     function setContentStyle(style: React.CSSProperties) {
@@ -174,14 +206,18 @@ function PullRefresh(props: PullRefreshProps) {
     }
 
     useEffect(() => {
+        let timehandle: any;
         if (!loading && loadingStatus.current === PullRefreshLoading.refreshing) {
             setContentStyle({ transform: `translate3d(0px, 0px, 0px)`, transition: null });
-            setPullRefreshStatus(PullRefreshPositionStatus.notEnoughRefreshPort);
+            timehandle = window.setTimeout(() => {
+                setPullRefreshStatus(PullRefreshPositionStatus.notEnoughRefreshPort);
+            }, 300);
         }
         if (!loading) {
             loadingStatus.current = PullRefreshLoading.none;
             position.current = getScrollPosition(ref.current as HTMLElement);
         }
+        return () => window.clearTimeout(timehandle);
     }, [loading]);
 
     useMount(() => {

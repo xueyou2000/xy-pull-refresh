@@ -25,14 +25,19 @@ function createData(count = 20) {
 
 export default function() {
     const [loading, setLoading] = useState(false);
+    const [isNoMoreData, setisNoMoreData] = useState(false);
     const [names, setNames] = useState(createData(5));
 
     function loadData() {
         setLoading(true);
         setTimeout(() => {
-            setNames([...names, ...createData(5)]);
+            const data = [...names, ...createData(10)];
+            setNames(data);
+            if (data.length > 30) {
+                setisNoMoreData(true);
+            }
             setLoading(false);
-        }, 1000);
+        }, 3000);
     }
 
     function refresh() {
@@ -40,11 +45,12 @@ export default function() {
         setTimeout(() => {
             setNames(createData(5));
             setLoading(false);
+            setisNoMoreData(false);
         }, 1000);
     }
 
     return (
-        <PullRefresh className="employee-page" onLoadMore={loadData} onPullRefresh={refresh} loading={loading} enablePullRefresh={true} style={{ height: document.documentElement.clientHeight }}>
+        <PullRefresh className="employee-page" onLoadMore={loadData} onPullRefresh={refresh} loading={loading} enablePullRefresh={true} style={{ height: document.documentElement.clientHeight }} isNoMoreData={isNoMoreData}>
             <ul className="employee-list">
                 {names.map((x) => (
                     <li key={x} tabIndex={0}>
