@@ -1,11 +1,19 @@
 import React from "react";
 import { render } from "react-testing-library";
-import Component from "../src";
+import PullRefresh from "../src";
 
-describe("component", () => {
+describe("PullRefresh", () => {
     test("render", () => {
-        const wrapper = render(<Component />);
-        const div = wrapper.getByText("Hello");
-        expect(div.textContent).toBe("Hello");
+        const wrapper = render(
+            <PullRefresh style={{ height: "500px" }}>
+                <ul>
+                    <li>A</li>
+                    <li>B</li>
+                    <li>C</li>
+                </ul>
+            </PullRefresh>
+        );
+        const pullRefresh = wrapper.container.querySelector(".xy-pull-refresh");
+        expect(pullRefresh).toBeDefined();
     });
 });
