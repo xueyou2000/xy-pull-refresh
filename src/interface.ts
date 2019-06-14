@@ -71,6 +71,18 @@ export interface PullRefreshProps {
      * 足够下拉刷新时提示
      */
     overRefreshNode?: React.ReactNode;
+    /**
+     * onTouchStart事件
+     */
+    onTouchStart?: Function;
+    /**
+     * onTouchMove事件
+     */
+    onTouchMove?: Function;
+    /**
+     * onTouchEnd事件
+     */
+    onTouchEnd?: Function;
 }
 
 export interface CircleProps {

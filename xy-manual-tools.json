@@ -3,5 +3,10 @@
         "name": "Simple",
         "title": "简单例子",
         "desc": "上拉刷新，下滑加载。"
+    },
+    {
+        "name": "BodyScroll",
+        "title": "body滚动条",
+        "desc": "使用body作为滚动条。"
     }
 ]

@@ -33,7 +33,7 @@ function RefreshCircle({ percent }) {
     );
 }
 
-function PullRefresh(props: PullRefreshProps) {
+const PullRefresh = React.forwardRef((props: PullRefreshProps, refProps: React.MutableRefObject<any>) => {
     const {
         prefixCls = "xy-pull-refresh",
         className,
@@ -50,7 +50,10 @@ function PullRefresh(props: PullRefreshProps) {
         noMoreDataNode = "没有更多数据",
         bottomIndicatorTips = "上滑加载数据",
         notEnoughRefreshNode = (p: number) => <RefreshCircle percent={p} />,
-        overRefreshNode = <RefreshCircle percent={100} />
+        overRefreshNode = <RefreshCircle percent={100} />,
+        onTouchStart: touchStart,
+        onTouchMove: touchMove,
+        onTouchEnd: touchEnd
     } = props;
     const [pullRefreshStatus, setPullRefreshStatus] = useState<PullRefreshPositionStatus>(PullRefreshPositionStatus.notEnoughRefreshPort);
     const position = useRef<PullRefreshPosition>(PullRefreshPosition.top);
@@ -64,32 +67,39 @@ function PullRefresh(props: PullRefreshProps) {
     const contentRef = useRef(null);
     const topIndicator = useRef(null);
 
-    function onTouchStart(e: TouchEvent) {
+    function onTouchStart(e: React.TouchEvent<HTMLElement>) {
+        start.current = e.touches[0].clientY;
         if (position.current !== PullRefreshPosition.middle) {
             offset.current = 0;
-            start.current = e.touches[0].clientY;
+        }
+        if (touchStart) {
+            touchStart(e);
         }
     }
 
-    function onTouchMove(e: TouchEvent) {
-        const target = e.currentTarget as HTMLElement;
+    function onTouchMove(e: React.TouchEvent<HTMLElement>) {
+        const target = e.target as any;
+        const wrapper = e.currentTarget as HTMLElement;
         const content = contentRef.current as HTMLElement;
         const point = e.touches[0];
         const _offset = point.clientY - start.current;
         offset.current = _offset;
 
+        target.stopPropagation = false;
+
         // 阻止滚动条, 修复ios拖拽显示出浏览器背景问题
-        if (content.scrollHeight > target.offsetHeight) {
+        if (content.scrollHeight > wrapper.offsetHeight) {
             if (position.current === PullRefreshPosition.bottom) {
                 if (_offset >= 0) {
-                    e.stopPropagation();
+                    target.stopPropagation = true;
                 }
             } else if (position.current === PullRefreshPosition.top) {
                 if (_offset < 0) {
-                    e.stopPropagation();
+                    console.log("设置!");
+                    target.stopPropagation = true;
                 }
             } else {
-                e.stopPropagation();
+                target.stopPropagation = true;
             }
         }
 
@@ -111,9 +121,13 @@ function PullRefresh(props: PullRefreshProps) {
             // Tips offset * 0.3 为了计算阻力
             setContentStyle({ transform: `translate3d(0px, ${_offset * 0.3}px, 0px)`, transition: "none" });
         }
+
+        if (touchMove) {
+            touchMove(e, _offset);
+        }
     }
 
-    function onTouchEnd(e: TouchEvent) {
+    function onTouchEnd(e: React.TouchEvent<HTMLElement>) {
         const target = e.currentTarget as HTMLElement;
         const content = contentRef.current as HTMLElement;
         const topElement = topIndicator.current as HTMLElement;
@@ -133,6 +147,12 @@ function PullRefresh(props: PullRefreshProps) {
                 start.current = null;
                 refresh();
             }
+        } else {
+            setContentStyle({ transform: `translate3d(0px, 0px, 0px)`, transition: null });
+        }
+
+        if (touchEnd) {
+            touchEnd(e);
         }
     }
 
@@ -227,25 +247,29 @@ function PullRefresh(props: PullRefreshProps) {
         }
     });
 
-    useEffect(() => {
-        const element = ref.current as HTMLElement;
-        if (!element) {
-            return;
+    useMount(() => {
+        function stopFunc(e: TouchEvent) {
+            const target = e.target as any;
+            if (!target || !target.stopPropagation) {
+                e.preventDefault();
+            }
         }
+        document.addEventListener("touchmove", stopFunc, { passive: false });
+        return () => document.removeEventListener("touchmove", stopFunc);
+    });
 
-        element.addEventListener("touchstart", onTouchStart);
-        element.addEventListener("touchmove", onTouchMove);
-        element.addEventListener("touchend", onTouchEnd);
-
-        return () => {
-            element.removeEventListener("touchstart", onTouchStart);
-            element.removeEventListener("touchmove", onTouchMove);
-            element.removeEventListener("touchend", onTouchEnd);
-        };
-    }, [ref.current, pullRefreshStatus, loading]);
+    useEffect(() => {
+        if (refProps) {
+            if (refProps instanceof Function) {
+                refProps(ref.current);
+            } else {
+                refProps.current = ref.current;
+            }
+        }
+    }, [ref.current]);
 
     return (
-        <div className={classNames(prefixCls, className)} style={style} onScroll={onScroll} ref={ref}>
+        <div className={classNames(prefixCls, className)} style={style} onScroll={onScroll} ref={ref} onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd} onTouchCancel={onTouchEnd}>
             <div className={`${prefixCls}-wrapper`}>
                 <div className={`${prefixCls}-content`} ref={contentRef}>
                     {renderTopIndicator()}
@@ -255,6 +279,6 @@ function PullRefresh(props: PullRefreshProps) {
             </div>
         </div>
     );
-}
+});
 
 export default React.memo(PullRefresh);

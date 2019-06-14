@@ -1,13 +1,16 @@
 import { PullRefreshPosition } from ".";
 
 //not draggable
-document.addEventListener(
-    "touchmove",
-    function(e) {
-        e.preventDefault();
-    },
-    { passive: false }
-);
+// document.addEventListener(
+//     "touchmove",
+//     function(e) {
+//         const target = e.target as HTMLElement;
+//         if (!target || !(target as any).stopPropagation) {
+//             e.preventDefault();
+//         }
+//     },
+//     { passive: false }
+// );
 
 export function getScrollPosition(target: HTMLElement) {
     let position: PullRefreshPosition;
