@@ -85,21 +85,20 @@ const PullRefresh = React.forwardRef((props: PullRefreshProps, refProps: React.M
         const _offset = point.clientY - start.current;
         offset.current = _offset;
 
-        target.stopPropagation = false;
+        target.stopScroll = true;
 
         // 阻止滚动条, 修复ios拖拽显示出浏览器背景问题
         if (content.scrollHeight > wrapper.offsetHeight) {
             if (position.current === PullRefreshPosition.bottom) {
                 if (_offset >= 0) {
-                    target.stopPropagation = true;
+                    target.stopScroll = false;
                 }
             } else if (position.current === PullRefreshPosition.top) {
                 if (_offset < 0) {
-                    console.log("设置!");
-                    target.stopPropagation = true;
+                    target.stopScroll = false;
                 }
             } else {
-                target.stopPropagation = true;
+                target.stopScroll = false;
             }
         }
 
@@ -250,7 +249,7 @@ const PullRefresh = React.forwardRef((props: PullRefreshProps, refProps: React.M
     useMount(() => {
         function stopFunc(e: TouchEvent) {
             const target = e.target as any;
-            if (!target || !target.stopPropagation) {
+            if (target && target.stopScroll) {
                 e.preventDefault();
             }
         }
