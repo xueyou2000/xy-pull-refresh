@@ -1,6 +1,6 @@
 {
     "name": "xy-pull-refresh",
-    "version": "0.0.22",
+    "version": "0.0.23",
     "description": "基于 React Hooks 的下拉刷新组件",
     "types": "es/index.d.ts",
     "main": "es/index.js",

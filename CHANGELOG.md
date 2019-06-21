@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.0.23 (Fri Jun 21 2019)
+
+-   修复`loading.svg`发布漏掉
+
 ## 0.0.22 (Fri Jun 21 2019)
 
 -   顶部下拉图标增加边距
