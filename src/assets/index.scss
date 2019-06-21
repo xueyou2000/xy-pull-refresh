@@ -21,7 +21,7 @@ $PullRefresh: "xy-pull-refresh";
     }
 
     &.top {
-        margin-top: -36px;
+        margin-top: -46px;
     }
 
     &.bottom {
@@ -37,4 +37,5 @@ $PullRefresh: "xy-pull-refresh";
     box-sizing: border-box;
     padding: 4px;
     box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
 }

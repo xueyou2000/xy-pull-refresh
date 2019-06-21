@@ -10,19 +10,19 @@ import Circle from "./Circle";
 export enum PullRefreshPosition {
     top,
     middle,
-    bottom
+    bottom,
 }
 
 export enum PullRefreshPositionStatus {
     notEnoughRefreshPort,
     overRefreshPort,
-    refreshing
+    refreshing,
 }
 
 export enum PullRefreshLoading {
     none,
     refreshing,
-    loadData
+    loadData,
 }
 
 function RefreshCircle({ percent }) {
@@ -53,12 +53,13 @@ const PullRefresh = React.forwardRef((props: PullRefreshProps, refProps: React.M
         overRefreshNode = <RefreshCircle percent={100} />,
         onTouchStart: touchStart,
         onTouchMove: touchMove,
-        onTouchEnd: touchEnd
+        onTouchEnd: touchEnd,
     } = props;
     const [pullRefreshStatus, setPullRefreshStatus] = useState<PullRefreshPositionStatus>(PullRefreshPositionStatus.notEnoughRefreshPort);
     const position = useRef<PullRefreshPosition>(PullRefreshPosition.top);
     const loadingStatus = useRef<PullRefreshLoading>(PullRefreshLoading.none);
     const [percent, setPercent] = useState(0);
+    const isLoad = useRef(false);
 
     const start = useRef(null);
     const offset = useRef<number>(null);
@@ -233,6 +234,7 @@ const PullRefresh = React.forwardRef((props: PullRefreshProps, refProps: React.M
             }, 300);
         }
         if (!loading) {
+            isLoad.current = true;
             loadingStatus.current = PullRefreshLoading.none;
             position.current = getScrollPosition(ref.current as HTMLElement);
         }
@@ -245,6 +247,13 @@ const PullRefresh = React.forwardRef((props: PullRefreshProps, refProps: React.M
             loadData();
         }
     });
+
+    useEffect(() => {
+        // 第二次 (进入页面=initLock从true改变为false)
+        if (isLoad.current === false && initLock === false) {
+            loadData();
+        }
+    }, [initLock]);
 
     useMount(() => {
         function stopFunc(e: TouchEvent) {
