@@ -10,19 +10,19 @@ import Circle from "./Circle";
 export enum PullRefreshPosition {
     top,
     middle,
-    bottom,
+    bottom
 }
 
 export enum PullRefreshPositionStatus {
     notEnoughRefreshPort,
     overRefreshPort,
-    refreshing,
+    refreshing
 }
 
 export enum PullRefreshLoading {
     none,
     refreshing,
-    loadData,
+    loadData
 }
 
 function RefreshCircle({ percent }) {
@@ -44,7 +44,7 @@ const PullRefresh = React.forwardRef((props: PullRefreshProps, refProps: React.M
         enableLoadMore = true,
         enablePullRefresh = false,
         initLock = false,
-        threshold = 150,
+        threshold = 250,
         onLoadMore,
         onPullRefresh,
         noMoreDataNode = "没有更多数据",
@@ -53,7 +53,7 @@ const PullRefresh = React.forwardRef((props: PullRefreshProps, refProps: React.M
         overRefreshNode = <RefreshCircle percent={100} />,
         onTouchStart: touchStart,
         onTouchMove: touchMove,
-        onTouchEnd: touchEnd,
+        onTouchEnd: touchEnd
     } = props;
     const [pullRefreshStatus, setPullRefreshStatus] = useState<PullRefreshPositionStatus>(PullRefreshPositionStatus.notEnoughRefreshPort);
     const position = useRef<PullRefreshPosition>(PullRefreshPosition.top);
