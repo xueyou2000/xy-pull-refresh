@@ -64,7 +64,6 @@ export default function() {
     function onTouchMove(e: TouchEvent, offset: number) {
         const target = e.currentTarget as HTMLElement;
         if (Math.abs(offset) > 20) {
-            console.log(offset, hidden);
             if (offset < 0 && !hidden) {
                 setHidden(true);
                 setTimeout(() => {
@@ -93,7 +92,17 @@ export default function() {
             <div className={`block ${hidden ? "hidden" : ""}`}>
                 <p>下面使用body作为滚动条</p>
             </div>
-            <PullRefresh ref={saveRef} className="employee-page" onLoadMore={loadData} onTouchMove={onTouchMove} onPullRefresh={refresh} loading={loading} style={{ height }} enablePullRefresh={true} isNoMoreData={isNoMoreData}>
+            <PullRefresh
+                ref={saveRef}
+                className="employee-page"
+                onLoadMore={loadData}
+                onTouchMove={onTouchMove}
+                onPullRefresh={refresh}
+                loading={loading}
+                style={{ height }}
+                enablePullRefresh={true}
+                isNoMoreData={isNoMoreData}
+            >
                 <ul className="employee-list">
                     {names.map((x) => (
                         <li key={x} tabIndex={0}>

@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "react-testing-library";
+import { render } from "@testing-library/react";
 import PullRefresh from "../src";
 
 describe("PullRefresh", () => {
@@ -11,7 +11,7 @@ describe("PullRefresh", () => {
                     <li>B</li>
                     <li>C</li>
                 </ul>
-            </PullRefresh>
+            </PullRefresh>,
         );
         const pullRefresh = wrapper.container.querySelector(".xy-pull-refresh");
         expect(pullRefresh).toBeDefined();

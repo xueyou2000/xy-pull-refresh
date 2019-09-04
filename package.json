@@ -1,6 +1,6 @@
 {
     "name": "xy-pull-refresh",
-    "version": "0.0.24",
+    "version": "0.0.25",
     "description": "基于 React Hooks 的下拉刷新组件",
     "types": "es/index.d.ts",
     "main": "es/index.js",
@@ -36,23 +36,23 @@
         "registry": "http://registry.npmjs.org/"
     },
     "devDependencies": {
-        "@types/classnames": "^2.2.8",
+        "@testing-library/react": "^9.1.4",
+        "@types/classnames": "^2.2.9",
         "@types/faker": "^4.1.5",
-        "@types/jest": "24.0.6",
-        "@types/node": "11.9.4",
-        "@types/randomcolor": "^0.5.2",
-        "@types/react": "16.8.2",
-        "@types/react-dom": "16.8.2",
+        "@types/jest": "24.0.18",
+        "@types/node": "12.7.4",
+        "@types/randomcolor": "^0.5.3",
+        "@types/react": "16.9.2",
+        "@types/react-dom": "16.9.0",
         "faker": "^4.1.0",
-        "quick-react-scripts": "1.2.1",
+        "quick-react-scripts": "^1.2.3",
         "randomcolor": "^0.5.4",
-        "react-testing-library": "^6.0.0",
-        "xy-manual-tools": "0.1.63"
+        "xy-manual-tools": "^0.1.66"
     },
     "dependencies": {
         "classnames": "^2.2.6",
-        "react": "^16.8.2",
-        "react-dom": "^16.8.2",
+        "react": "^16.9.0",
+        "react-dom": "^16.9.0",
         "utils-hooks": "^0.0.71"
     },
     "repository": {
