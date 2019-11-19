@@ -6986,10 +6986,10 @@ querystringify@^2.1.1:
   resolved "https://registry.npm.taobao.org/querystringify/download/querystringify-2.1.1.tgz#60e5a5fd64a7f8bfa4d2ab2ed6fdf4c85bad154e"
   integrity sha1-YOWl/WSn+L+k0qsu1v30yFutFU4=
 
-quick-react-scripts@^1.2.3:
-  version "1.2.3"
-  resolved "https://registry.npm.taobao.org/quick-react-scripts/download/quick-react-scripts-1.2.3.tgz#5c11c2da50b9b6c9f7a682a4f81a6e0f6ff22a71"
-  integrity sha1-XBHC2lC5tsn3poKk+BpuD2/yKnE=
+quick-react-scripts@^1.3.2:
+  version "1.3.2"
+  resolved "https://registry.npm.taobao.org/quick-react-scripts/download/quick-react-scripts-1.3.2.tgz#66ebec93367bc78eaf65b402a90739b7656dde30"
+  integrity sha1-ZuvskzZ7x46vZbQCqQc5t2Vt3jA=
   dependencies:
     "@babel/core" "^7.3.4"
     "@babel/preset-env" "^7.3.4"
@@ -7066,7 +7066,17 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-dom@^16.8.2, react-dom@^16.8.6, react-dom@^16.9.0:
+react-dom@^16.12.0:
+  version "16.12.0"
+  resolved "https://registry.npm.taobao.org/react-dom/download/react-dom-16.12.0.tgz#0da4b714b8d13c2038c9396b54a92baea633fe11"
+  integrity sha1-DaS3FLjRPCA4yTlrVKkrrqYz/hE=
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+    scheduler "^0.18.0"
+
+react-dom@^16.8.2, react-dom@^16.9.0:
   version "16.9.0"
   resolved "https://registry.npm.taobao.org/react-dom/download/react-dom-16.9.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Freact-dom%2Fdownload%2Freact-dom-16.9.0.tgz#5e65527a5e26f22ae3701131bcccaee9fb0d3962"
   integrity sha1-XmVSel4m8irjcBExvMyu6fsNOWI=
@@ -7117,7 +7127,16 @@ react-router@5.0.1:
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
 
-react@^16.8.2, react@^16.8.6, react@^16.9.0:
+react@^16.12.0:
+  version "16.12.0"
+  resolved "https://registry.npm.taobao.org/react/download/react-16.12.0.tgz#0c0a9c6a142429e3614834d5a778e18aa78a0b83"
+  integrity sha1-DAqcahQkKeNhSDTVp3jhiqeKC4M=
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+
+react@^16.8.2, react@^16.9.0:
   version "16.9.0"
   resolved "https://registry.npm.taobao.org/react/download/react-16.9.0.tgz#40ba2f9af13bc1a38d75dbf2f4359a5185c4f7aa"
   integrity sha1-QLovmvE7waONddvy9DWaUYXE96o=
@@ -7602,6 +7621,14 @@ scheduler@^0.15.0:
   version "0.15.0"
   resolved "https://registry.npm.taobao.org/scheduler/download/scheduler-0.15.0.tgz?cache=0&sync_timestamp=1565317903688&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fscheduler%2Fdownload%2Fscheduler-0.15.0.tgz#6bfcf80ff850b280fed4aeecc6513bc0b4f17f8e"
   integrity sha1-a/z4D/hQsoD+1K7sxlE7wLTxf44=
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+
+scheduler@^0.18.0:
+  version "0.18.0"
+  resolved "https://registry.npm.taobao.org/scheduler/download/scheduler-0.18.0.tgz?cache=0&sync_timestamp=1573777131294&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fscheduler%2Fdownload%2Fscheduler-0.18.0.tgz#5901ad6659bc1d8f3fdaf36eb7a67b0d6746b1c4"
+  integrity sha1-WQGtZlm8HY8/2vNut6Z7DWdGscQ=
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -8686,11 +8713,6 @@ utila@^0.4.0, utila@~0.4:
   resolved "https://registry.npm.taobao.org/utila/download/utila-0.4.0.tgz#8a16a05d445657a3aea5eecc5b12a4fa5379772c"
   integrity sha1-ihagXURWV6Oupe7MWxKk+lN5dyw=
 
-utils-hooks@0.0.69:
-  version "0.0.69"
-  resolved "https://registry.npm.taobao.org/utils-hooks/download/utils-hooks-0.0.69.tgz#b711fb1aaea7056f3ad662db5e71cfd034ca71af"
-  integrity sha1-txH7Gq6nBW861mLbXnHP0DTKca8=
-
 utils-hooks@^0.0.65:
   version "0.0.65"
   resolved "https://registry.npm.taobao.org/utils-hooks/download/utils-hooks-0.0.65.tgz#abb9e24413ebee7ef3e563b1967e890ba4e077dc"
@@ -9118,20 +9140,10 @@ xy-divider@^0.0.51:
     react "^16.9.0"
     react-dom "^16.9.0"
 
-xy-grid@^0.0.6:
-  version "0.0.6"
-  resolved "https://registry.npm.taobao.org/xy-grid/download/xy-grid-0.0.6.tgz#064f630d4f2f75af3dd6a8036531f0a34e748f63"
-  integrity sha1-Bk9jDU8vda891qgDZTHwo050j2M=
-  dependencies:
-    classnames "^2.2.6"
-    react "^16.8.2"
-    react-dom "^16.8.2"
-    utils-hooks "0.0.69"
-
-xy-manual-tools@^0.1.66:
-  version "0.1.66"
-  resolved "https://registry.npm.taobao.org/xy-manual-tools/download/xy-manual-tools-0.1.66.tgz#7eba164e3d59bbb845b8ee54abe951a63ce3aabf"
-  integrity sha1-froWTj1Zu7hFuO5Uq+lRpjzjqr8=
+xy-manual-tools@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.npm.taobao.org/xy-manual-tools/download/xy-manual-tools-0.3.0.tgz#13c6d0ee59246b2b46f6a2f23baf05caa2f5ad70"
+  integrity sha1-E8bQ7lkkaytG9qLyO68FyqL1rXA=
   dependencies:
     "@fortawesome/fontawesome-svg-core" "^1.2.17"
     "@fortawesome/free-solid-svg-icons" "^5.8.1"
@@ -9158,8 +9170,8 @@ xy-manual-tools@^0.1.66:
     optimize-css-assets-webpack-plugin "^5.0.1"
     ora "^3.4.0"
     prismjs "^1.16.0"
-    react "^16.8.6"
-    react-dom "^16.8.6"
+    react "^16.12.0"
+    react-dom "^16.12.0"
     react-router-config "^5.0.1"
     react-router-dom "^5.0.1"
     sass-loader "^7.1.0"
@@ -9174,11 +9186,9 @@ xy-manual-tools@^0.1.66:
     webpack-dev-server "^3.3.1"
     webpack-manifest-plugin "^2.0.4"
     xy-divider "^0.0.51"
-    xy-grid "^0.0.6"
-    xy-messagebox "0.0.91"
-    xy-model "^0.0.51"
+    xy-messagebox "^0.0.91"
 
-xy-messagebox@0.0.91, xy-messagebox@^0.0.91:
+xy-messagebox@^0.0.91:
   version "0.0.91"
   resolved "https://registry.npm.taobao.org/xy-messagebox/download/xy-messagebox-0.0.91.tgz#5349b566ec94ecc00efe142b1a7db2325682c5e5"
   integrity sha1-U0m1ZuyU7MAO/hQrGn2yMlaCxeU=
@@ -9191,17 +9201,6 @@ xy-messagebox@0.0.91, xy-messagebox@^0.0.91:
     react-dom "^16.9.0"
     utils-hooks "^0.0.71"
     xy-button "^1.0.2"
-
-xy-model@^0.0.51:
-  version "0.0.51"
-  resolved "https://registry.npm.taobao.org/xy-model/download/xy-model-0.0.51.tgz#6a57c41669f6c41f0f39563880e37b9976067c4c"
-  integrity sha1-alfEFmn2xB8POVY4gON7mXYGfEw=
-  dependencies:
-    classnames "^2.2.6"
-    react "^16.9.0"
-    react-dom "^16.9.0"
-    utils-hooks "^0.0.71"
-    xy-messagebox "^0.0.91"
 
 y18n@^3.2.1:
   version "3.2.1"

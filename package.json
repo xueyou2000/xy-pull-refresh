@@ -1,6 +1,6 @@
 {
     "name": "xy-pull-refresh",
-    "version": "0.0.25",
+    "version": "0.1.0",
     "description": "基于 React Hooks 的下拉刷新组件",
     "types": "es/index.d.ts",
     "main": "es/index.js",
@@ -45,14 +45,14 @@
         "@types/react": "16.9.2",
         "@types/react-dom": "16.9.0",
         "faker": "^4.1.0",
-        "quick-react-scripts": "^1.2.3",
+        "quick-react-scripts": "^1.3.2",
         "randomcolor": "^0.5.4",
-        "xy-manual-tools": "^0.1.66"
+        "xy-manual-tools": "^0.3.0"
     },
     "dependencies": {
         "classnames": "^2.2.6",
-        "react": "^16.9.0",
-        "react-dom": "^16.9.0",
+        "react": "^16.12.0",
+        "react-dom": "^16.12.0",
         "utils-hooks": "^0.0.71"
     },
     "repository": {
